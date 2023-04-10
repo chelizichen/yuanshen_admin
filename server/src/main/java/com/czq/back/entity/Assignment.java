@@ -3,6 +3,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 @Entity
 @Table(name = "assignments")
+// 期末作业
 public class Assignment {
 
     @Id
@@ -17,6 +18,29 @@ public class Assignment {
 
     @Column(name = "due_date")
     private LocalDate dueDate;
+
+    @Column(name = "max_points")
+    private String maxPoints;
+
+    @ManyToOne
+    @JoinColumn(name = "section_id", referencedColumnName = "section_id")
+    private Section section;
+
+    public String getMaxPoints() {
+        return maxPoints;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
+    }
+
+    public void setMaxPoints(String maxPoints) {
+        this.maxPoints = maxPoints;
+    }
 
     // constructors, getters, and setters
 

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "Section")
+// 一门课多个老师来上？
 public class Section {
 
     @Id
@@ -12,21 +13,27 @@ public class Section {
     @Column(name = "section_id")
     private Long id;
 
+    // 任课教室
     @Column(name = "section_number", nullable = false)
     private Integer sectionNumber;
 
+    // 星期几
     @Column(name = "days", nullable = false)
     private String days;
 
+    // 开始时间
     @Column(name = "start_time", nullable = false)
     private Time startTime;
 
+    // 结束时间
     @Column(name = "end_time", nullable = false)
     private Time endTime;
 
+    // 上课地址
     @Column(name = "location")
     private String location;
 
+    // 任课ID
     @ManyToOne
     @JoinColumn(name = "course_id", referencedColumnName = "course_id")
     private Course course;

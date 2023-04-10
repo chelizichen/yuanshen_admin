@@ -5,6 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Schedule")
+// 一学期的课的表
 public class Schedule {
 
     @Id
@@ -12,9 +13,11 @@ public class Schedule {
     @Column(name = "schedule_id")
     private Long id;
 
+    // 开始时间
     @Column(name = "start_date", nullable = false)
     private Date startDate;
 
+    // 结束时间
     @Column(name = "end_date", nullable = false)
     private Date endDate;
 

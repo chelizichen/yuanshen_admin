@@ -5,6 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Attendance")
+// 考勤表
 public class Attendance {
 
     @Id
@@ -12,16 +13,20 @@ public class Attendance {
     @Column(name = "attendance_id")
     private Long id;
 
+    // 考勤日期
     @Column(name = "date", nullable = false)
     private Date date;
 
+    // 是否在场
     @Column(name = "present", nullable = false)
     private Boolean present;
 
+    // 学生ID
     @ManyToOne
     @JoinColumn(name = "student_id", referencedColumnName = "student_id")
     private Student student;
 
+    // 科目ID
     @ManyToOne
     @JoinColumn(name = "section_id", referencedColumnName = "section_id")
     private Section section;

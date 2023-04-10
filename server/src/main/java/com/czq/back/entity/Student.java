@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "student")
+// 学生表
 public class Student {
 
     @Id
@@ -13,12 +14,15 @@ public class Student {
     @Column(name = "student_id")
     private Long id;
 
+    // 学生姓名
     @Column(name = "name", nullable = false)
     private String name;
 
+    // 邮箱
     @Column(name = "email", nullable = false)
     private String email;
 
+    // 注册日期
     @Column(name = "enrollment_date", nullable = false)
     private LocalDate enrollmentDate;
 

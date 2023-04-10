@@ -20,6 +20,7 @@ public class Course {
         @Column(name = "description")
         private String description;
 
+        // 学期
         @Column(name = "semester")
         private String semester;
 
