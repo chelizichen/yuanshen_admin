@@ -1,5 +1,8 @@
 package com.czq.back.controller;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.PageDTO;
+import com.czq.back.dto.QueryIdDTO;
 import com.czq.back.entity.Section;
 import com.czq.back.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,35 +19,32 @@ public class SectionController {
     @Autowired
     private SectionService sectionService;
 
-    @PostMapping
-    public ResponseEntity<Section> createSection(@RequestBody Section sectionDTO) {
-        Section savedSection = sectionService.saveSection(sectionDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedSection);
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Section> getSectionById(@PathVariable Long id) {
-        Section sectionDTO = sectionService.getSectionById(id);
+    @PostMapping("/get")
+    public ResponseEntity<Section> getSectionById(@RequestBody QueryIdDTO queryIdDTO) {
+        Section sectionDTO = sectionService.getSectionById(queryIdDTO.getId());
         return ResponseEntity.ok(sectionDTO);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Section> updateSection(@PathVariable Long id, @RequestBody Section sectionDTO) {
-        sectionDTO.setId(id);
-        Section updatedSection = sectionService.updateSection(sectionDTO);
-        return ResponseEntity.ok(updatedSection);
+    @PostMapping("update")
+    public ResponseEntity<Section> updateSection(@RequestBody Section sectionDTO) {
+        if(sectionDTO.getId() != null){
+            Section updatedSection = sectionService.updateSection(sectionDTO);
+            return ResponseEntity.ok(updatedSection);
+        }
+        Section savedSection = sectionService.saveSection(sectionDTO);
+        return ResponseEntity.status(HttpStatus.CREATED). body(savedSection);
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/del")
     public ResponseEntity<?> deleteSection(@PathVariable Long id) {
         sectionService.deleteSectionById(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<Section>> getAllSections() {
-        List<Section> sectionDTOList = sectionService.getAllSections();
-        return ResponseEntity.ok(sectionDTOList);
+    @PostMapping("list")
+    public ListRet getAllSections(@RequestBody PageDTO pageDTO) {
+        final ListRet allSections = sectionService.getAllSections(pageDTO);
+        return allSections;
     }
 
     // add other endpoints as needed

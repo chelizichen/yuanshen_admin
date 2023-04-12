@@ -1,8 +1,13 @@
 package com.czq.back.service;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.PageDTO;
 import com.czq.back.entity.Assignment;
 import com.czq.back.repo.AssignmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,12 +18,18 @@ public class AssignmentService {
     @Autowired
     private AssignmentRepository assignmentRepository;
 
-    public List<Assignment> getAllAssignments() {
-        return assignmentRepository.findAll();
+    public ListRet getAllAssignments(PageDTO pageDTO) {
+        Pageable pageable = PageRequest.of(pageDTO.getPage(), pageDTO.getSize());
+        Page<Assignment> byKeyword = assignmentRepository.findByKeyword(pageDTO.getKeyword(), pageable);
+        List<Assignment> content = byKeyword.getContent();
+        long totalElements = byKeyword.getTotalElements();
+        ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
     }
 
-    public Optional<Assignment> getAssignmentById(Long id) {
-        return assignmentRepository.findById(id);
+    public Assignment getAssignmentById(Long id) {
+        final Assignment assignment = assignmentRepository.findById(id).orElse(null);
+        return assignment;
     }
 
     public Assignment createAssignment(Assignment assignment) {

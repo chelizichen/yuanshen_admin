@@ -2,7 +2,7 @@ package com.czq.back.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 @Entity
-@Table(name = "assignments")
+@Table(name = "Assignment")
 // 期末作业
 public class Assignment {
 
@@ -12,9 +12,6 @@ public class Assignment {
 
     @Column(name = "name")
     private String name;
-
-    @Column(name = "description")
-    private String description;
 
     @Column(name = "due_date")
     private LocalDate dueDate;
@@ -47,11 +44,6 @@ public class Assignment {
     public Assignment() {
     }
 
-    public Assignment(String name, String description, LocalDate dueDate) {
-        this.name = name;
-        this.description = description;
-        this.dueDate = dueDate;
-    }
 
     // getters and setters
 
@@ -69,14 +61,6 @@ public class Assignment {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public LocalDate getDueDate() {

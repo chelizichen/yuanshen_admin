@@ -1,12 +1,20 @@
 package com.czq.back.controller;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.PageDTO;
+import com.czq.back.dto.QueryIdDTO;
+import com.czq.back.entity.Assignment;
 import com.czq.back.entity.Research;
 import com.czq.back.expection.ResourceNotFoundException;
 import com.czq.back.repo.ResearchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.management.Query;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -17,33 +25,32 @@ public class ResearchController {
     @Autowired
     private ResearchRepository researchRepository;
 
-    @GetMapping
-    public List<Research> getAllResearch() {
-        return researchRepository.findAll();
+    @PostMapping("list")
+    public ListRet getAllResearch(@RequestBody PageDTO pageDTO) {
+        Pageable pageable = PageRequest.of(pageDTO.getPage(), pageDTO.getSize());
+        Page<Research> byKeyword = researchRepository.findByKeyword(pageDTO.getKeyword(), pageable);
+        List<Research> content = byKeyword.getContent();
+        long totalElements = byKeyword.getTotalElements();
+        ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
     }
 
-    @GetMapping("/{id}")
-    public Research getResearchById(@PathVariable Long id) {
-        return researchRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Research not found with id: " + id));
+    @PostMapping("get")
+    public Research getResearchById(@RequestBody QueryIdDTO queryIdDTO) {
+        return researchRepository.findById(queryIdDTO.getId()).orElseThrow(() -> new ResourceNotFoundException("Research not found with id: " + queryIdDTO.getId()));
     }
 
-    @PostMapping
-    public Research createResearch(@Valid @RequestBody Research research) {
-        return researchRepository.save(research);
+    @PostMapping("update")
+    public Research createResearch(@Valid @RequestBody Research researchDetail) {
+        if(researchDetail.getResearchId() != null){
+            return researchRepository.save(researchDetail);
+        }
+        return researchRepository.save(researchDetail);
     }
 
-    @PutMapping("/{id}")
-    public Research updateResearch(@PathVariable Long id, @Valid @RequestBody Research researchDetails) {
-        Research research = researchRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Research not found with id: " + id));
-        research.setTopic(researchDetails.getTopic());
-        research.setPublishedPapers(researchDetails.getPublishedPapers());
-        research.setAwards(researchDetails.getAwards());
-        return researchRepository.save(research);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteResearch(@PathVariable Long id) {
-        Research research = researchRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Research not found with id: " + id));
+    @PostMapping("del")
+    public ResponseEntity<?> deleteResearch(@RequestBody QueryIdDTO queryIdDTO) {
+        Research research = researchRepository.findById(queryIdDTO.getId()).orElseThrow(() -> new ResourceNotFoundException("Research not found with id: " + queryIdDTO.getId()));
         researchRepository.delete(research);
         return ResponseEntity.ok().build();
     }

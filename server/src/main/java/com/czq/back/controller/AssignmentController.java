@@ -1,8 +1,12 @@
 package com.czq.back.controller;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.PageDTO;
+import com.czq.back.dto.QueryIdDTO;
 import com.czq.back.entity.Assignment;
 import com.czq.back.expection.ResourceNotFoundException;
 import com.czq.back.repo.AssignmentRepository;
+import com.czq.back.service.AssignmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,36 +19,30 @@ import java.util.List;
 public class AssignmentController {
 
     @Autowired
-    private AssignmentRepository assignmentRepository;
+    private AssignmentService assignmentService;
 
-    @GetMapping
-    public List<Assignment> getAllAssignments() {
-        return assignmentRepository.findAll();
+    @PostMapping("list")
+    public ListRet getAllAssignments(@RequestBody PageDTO pageDTO) {
+        return assignmentService.getAllAssignments(pageDTO);
     }
 
-    @GetMapping("/{id}")
-    public Assignment getAssignmentById(@PathVariable Long id) {
-        return assignmentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Assignment not found with id: " + id));
+    @PostMapping("/one")
+    public Assignment getAssignmentById(@RequestBody QueryIdDTO queryIdDTO) {
+        return assignmentService.getAssignmentById(queryIdDTO.getId());
     }
 
-    @PostMapping
-    public Assignment createAssignment(@Valid @RequestBody Assignment assignment) {
-        return assignmentRepository.save(assignment);
+    @PostMapping("update")
+    public Assignment updateAssignment(  @RequestBody Assignment assignmentDetails) {
+        if(assignmentDetails.getId() != null){
+            return assignmentService.updateAssignment(assignmentDetails.getId(), assignmentDetails);
+        }else {
+            return assignmentService.createAssignment(assignmentDetails);
+        }
     }
 
-    @PutMapping("/{id}")
-    public Assignment updateAssignment(@PathVariable Long id, @Valid @RequestBody Assignment assignmentDetails) {
-        Assignment assignment = assignmentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Assignment not found with id: " + id));
-        assignment.setName(assignmentDetails.getName());
-        assignment.setDescription(assignmentDetails.getDescription());
-        assignment.setDueDate(assignmentDetails.getDueDate());
-        return assignmentRepository.save(assignment);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAssignment(@PathVariable Long id) {
-        Assignment assignment = assignmentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Assignment not found with id: " + id));
-        assignmentRepository.delete(assignment);
+    @PostMapping("del")
+    public ResponseEntity<?> deleteAssignment(@RequestBody QueryIdDTO queryIdDTO) {
+        assignmentService.deleteAssignment(queryIdDTO.getId());
         return ResponseEntity.ok().build();
     }
 }

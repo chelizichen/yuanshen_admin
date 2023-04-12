@@ -1,8 +1,15 @@
 package com.czq.back.service;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.LoginDTO;
+import com.czq.back.dto.PageDTO;
+import com.czq.back.entity.Course;
 import com.czq.back.entity.Teacher;
 import com.czq.back.repo.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -54,9 +61,18 @@ public class TeacherService {
         }
     }
 
-    public List<Teacher> getAllTeachers() {
-        List<Teacher> teacherList = teacherRepository.findAll();
-        return teacherList;
+    public ListRet getAllTeachers(PageDTO pageDTO) {
+        Pageable pageable = PageRequest.of(pageDTO.getPage(), pageDTO.getSize());
+        Page<Teacher> byKeyword = teacherRepository.findByKeyword(pageDTO.getKeyword(),pageable);
+        List<Teacher> content = byKeyword.getContent();
+        long totalElements = byKeyword.getTotalElements();
+        ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
+    }
+
+    public Teacher login (LoginDTO loginDTO){
+        final Optional<Teacher> byNameAndEmail = teacherRepository.findByNameAndEmail(loginDTO.getPhone());
+        return byNameAndEmail.orElse(null);
     }
 
     // add other methods as needed

@@ -1,8 +1,10 @@
 package com.czq.back.controller;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.LoginDTO;
+import com.czq.back.dto.PageDTO;
 import com.czq.back.entity.Teacher;
-import com.czq.back.expection.ResourceNotFoundException;
-import com.czq.back.repo.TeacherRepository;
+import com.czq.back.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,40 +16,41 @@ import java.util.List;
 @RequestMapping("/api/teachers")
 public class TeacherController {
 
+
     @Autowired
-    private TeacherRepository teacherRepository;
+    private TeacherService teacherService;
 
-    @GetMapping
-    public List<Teacher> getAllTeachers() {
-        return teacherRepository.findAll();
+    @PostMapping("/list")
+    public ListRet getAllTeachers(@RequestBody PageDTO pageDTO) {
+        return teacherService.getAllTeachers(pageDTO);
     }
 
-    @GetMapping("/{id}")
-    public Teacher getTeacherById(@PathVariable Long id) {
-        return teacherRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Teacher not found with id: " + id));
+    @PostMapping("/one")
+    public Teacher getTeacherById(@RequestParam("id") Long id) {
+        return teacherService.getTeacherById(id);
     }
 
-    @PostMapping
-    public Teacher createTeacher(@Valid @RequestBody Teacher teacher) {
-        return teacherRepository.save(teacher);
+    @PostMapping("/update")
+    public Teacher updateTeacher(@RequestBody Teacher teacherDetails) {
+
+        if(teacherDetails.getId() != null){
+            final Teacher teacher = teacherService.saveTeacher(teacherDetails);
+            return teacher;
+        }else{
+            final Teacher teacher = teacherService.updateTeacher(teacherDetails);
+            return teacher;
+        }
     }
 
-    @PutMapping("/{id}")
-    public Teacher updateTeacher(@PathVariable Long id, @Valid @RequestBody Teacher teacherDetails) {
-        Teacher teacher = teacherRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Teacher not found with id: " + id));
-        teacher.setName(teacherDetails.getName());
-        teacher.setEmail(teacherDetails.getEmail());
-        teacher.setPhone(teacherDetails.getPhone());
-        teacher.setSubject(teacherDetails.getSubject());
-        teacher.setExperience(teacherDetails.getExperience());
-        teacher.setCertification(teacherDetails.getCertification());
-        return teacherRepository.save(teacher);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteTeacher(@PathVariable Long id) {
-        Teacher teacher = teacherRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Teacher not found with id: " + id));
-        teacherRepository.delete(teacher);
+    @GetMapping("/del")
+    public ResponseEntity<?> deleteTeacher(@RequestParam("id") Long id) {
+        teacherService.deleteTeacherById(id);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/login")
+    public Teacher login(@Valid @RequestBody LoginDTO loginDTO) {
+        return teacherService.login(loginDTO);
+    }
+
 }

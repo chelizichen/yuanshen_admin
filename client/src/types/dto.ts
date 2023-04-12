@@ -79,3 +79,7 @@ export type Research = {
   awardName: string;
   awardDate: string;
 }
+
+export type Pagination = {
+  
+}

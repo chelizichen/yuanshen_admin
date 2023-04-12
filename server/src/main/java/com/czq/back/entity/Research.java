@@ -3,65 +3,122 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "research")
+@Table(name = "Research")
 public class Research {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "research_id")
+    private Long researchId;
 
-    @Column(name = "topic")
-    private String topic;
+    @ManyToOne
+    @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id")
+    private Teacher teacher;
 
-    @Column(name = "published_papers")
-    private int publishedPapers;
+    @Column( name ="research_topic")
+    private String researchTopic;
 
-    @Column(name = "awards")
-    private String awards;
+    @Column( name = "paper_title")
+    private String paperTitle;
 
-    // constructors, getters, and setters
+    @Column(name = "paper_journal")
+    private String paperJournal;
 
-    public Research() {
+    @Column(name = "paper_date")
+    private String paperDate;
+
+    @Column(name = "paper_volume")
+    private String paperVolume;
+
+    @Column(name = "paper_issue")
+    private String paperIssue;
+
+    @Column(name = "paper_pages")
+    private String paperPages;
+
+    @Column(name = "award_name")
+    private String awardName;
+
+    @Column(name = "award_date")
+    private String awardDate;
+
+    public Long getResearchId() {
+        return researchId;
     }
 
-    public Research(String topic, int publishedPapers, String awards) {
-        this.topic = topic;
-        this.publishedPapers = publishedPapers;
-        this.awards = awards;
+    public void setResearchId(Long researchId) {
+        this.researchId = researchId;
     }
 
-    // getters and setters
-
-    public Long getId() {
-        return id;
+    public String getResearchTopic() {
+        return researchTopic;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setResearchTopic(String researchTopic) {
+        this.researchTopic = researchTopic;
     }
 
-    public String getTopic() {
-        return topic;
+    public String getPaperTitle() {
+        return paperTitle;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+    public void setPaperTitle(String paperTitle) {
+        this.paperTitle = paperTitle;
     }
 
-    public int getPublishedPapers() {
-        return publishedPapers;
+    public String getPaperJournal() {
+        return paperJournal;
     }
 
-    public void setPublishedPapers(int publishedPapers) {
-        this.publishedPapers = publishedPapers;
+    public void setPaperJournal(String paperJournal) {
+        this.paperJournal = paperJournal;
     }
 
-    public String getAwards() {
-        return awards;
+    public String getPaperDate() {
+        return paperDate;
     }
 
-    public void setAwards(String awards) {
-        this.awards = awards;
+    public void setPaperDate(String paperDate) {
+        this.paperDate = paperDate;
     }
 
+    public String getPaperVolume() {
+        return paperVolume;
+    }
+
+    public void setPaperVolume(String paperVolume) {
+        this.paperVolume = paperVolume;
+    }
+
+    public String getPaperIssue() {
+        return paperIssue;
+    }
+
+    public void setPaperIssue(String paperIssue) {
+        this.paperIssue = paperIssue;
+    }
+
+    public String getPaperPages() {
+        return paperPages;
+    }
+
+    public void setPaperPages(String paperPages) {
+        this.paperPages = paperPages;
+    }
+
+    public String getAwardName() {
+        return awardName;
+    }
+
+    public void setAwardName(String awardName) {
+        this.awardName = awardName;
+    }
+
+    public String getAwardDate() {
+        return awardDate;
+    }
+
+    public void setAwardDate(String awardDate) {
+        this.awardDate = awardDate;
+    }
 }

@@ -1,8 +1,14 @@
 package com.czq.back.service;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.PageDTO;
+import com.czq.back.entity.Course;
 import com.czq.back.entity.Section;
 import com.czq.back.repo.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -48,9 +54,13 @@ public class SectionService {
         }
     }
 
-    public List<Section> getAllSections() {
-        List<Section> sectionList = sectionRepository.findAll();
-        return sectionList;
+    public ListRet getAllSections(PageDTO pageDTO) {
+        Pageable pageable = PageRequest.of(pageDTO.getPage(), pageDTO.getSize());
+        Page<Section> byKeyword = sectionRepository.findByKeyword(pageDTO.getKeyword(), pageable);
+        List<Section> content = byKeyword.getContent();
+        long totalElements = byKeyword.getTotalElements();
+        ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
     }
 
     // add other methods as needed

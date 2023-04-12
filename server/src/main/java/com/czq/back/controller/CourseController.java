@@ -1,5 +1,8 @@
 package com.czq.back.controller;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.PageDTO;
+import com.czq.back.dto.QueryIdDTO;
 import com.czq.back.entity.Course;
 import com.czq.back.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,34 +20,28 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @PostMapping
+    @PostMapping("update")
     public ResponseEntity<Course> createCourse(@RequestBody Course course) {
         Course savedCourse = courseService.createCourse(course);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCourse);
     }
 
-    @GetMapping("/{id}")
+    @PostMapping("one")
     public ResponseEntity<Optional<Course>> getCourseById(@PathVariable Long id) {
         Optional<Course> courseDTO = courseService.getCourseById(id);
         return ResponseEntity.ok(courseDTO);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Course> updateCourse(@PathVariable Long id, @RequestBody Course course) {
-        Course updatedCourse = courseService.updateCourse(id,course);
-        return ResponseEntity.ok(updatedCourse);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteCourse(@PathVariable Long id) {
-        courseService.deleteCourse(id);
+    @PostMapping("/del")
+    public ResponseEntity<?> deleteCourse(@RequestBody QueryIdDTO queryIdDTO) {
+        courseService.deleteCourse(queryIdDTO.getId());
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<Course>> getAllCourses() {
-        List<Course> courseDTOList = courseService.getAllCourses();
-        return ResponseEntity.ok(courseDTOList);
+    @PostMapping("list")
+    public ListRet getAllCourses(@RequestBody PageDTO pageDTO) {
+        final ListRet allCourses = courseService.getAllCourses(pageDTO);
+        return allCourses;
     }
 
     // add other endpoints as needed

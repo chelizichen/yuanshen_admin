@@ -1,5 +1,6 @@
 package com.czq.back.controller;
 
+import com.czq.back.dto.QueryIdDTO;
 import com.czq.back.entity.Attendance;
 import com.czq.back.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,9 @@ public class AttendanceController {
     }
 
 
-    @GetMapping("/get/{id}")
-    public ResponseEntity<List<Attendance>> getAttendanceByTeacherId(@PathVariable Long id) {
-        List<Attendance> attendanceList = attendanceService.getAttendanceByTeacherId(id);
+    @PostMapping("/get/teacher")
+    public ResponseEntity<List<Attendance>> getAttendanceByTeacherId(@RequestBody QueryIdDTO queryIdDTO) {
+        List<Attendance> attendanceList = attendanceService.getAttendanceByTeacherId(queryIdDTO.getId());
         return ResponseEntity.ok(attendanceList);
     }
 

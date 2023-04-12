@@ -21,6 +21,9 @@ public class Attendance {
     @Column(name = "present", nullable = false)
     private Boolean present;
 
+    @Column(name = "teacher_id", nullable = false)
+    private Boolean teacherId;
+
     // 学生ID
     @ManyToOne
     @JoinColumn(name = "student_id", referencedColumnName = "student_id")
@@ -71,6 +74,14 @@ public class Attendance {
 
     public void setSection(Section section) {
         this.section = section;
+    }
+
+    public Boolean getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Boolean teacherId) {
+        this.teacherId = teacherId;
     }
 }
 

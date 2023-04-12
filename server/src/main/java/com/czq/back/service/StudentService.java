@@ -1,8 +1,14 @@
 package com.czq.back.service;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.PageDTO;
+import com.czq.back.entity.Course;
 import com.czq.back.entity.Student;
 import com.czq.back.repo.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -47,9 +53,13 @@ public class StudentService {
         }
     }
 
-    public List<Student> getAllStudents() {
-        List<Student> studentList = studentRepository.findAll();
-        return studentList;
+    public ListRet getAllStudents(PageDTO pageDTO) {
+        Pageable pageable = PageRequest.of(pageDTO.getPage(), pageDTO.getSize());
+        Page<Student> byKeyword = studentRepository.findByKeyword(pageDTO.getKeyword(), pageable);
+        List<Student> content = byKeyword.getContent();
+        long totalElements = byKeyword.getTotalElements();
+        ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
     }
 
     // add other methods as needed
