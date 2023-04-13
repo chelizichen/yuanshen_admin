@@ -25,5 +25,45 @@ public class Substitute {
     @Column(name = "substitute_time")
     private LocalDateTime substituteTime;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Teacher getOriginalTeacher() {
+        return originalTeacher;
+    }
+
+    public void setOriginalTeacher(Teacher originalTeacher) {
+        this.originalTeacher = originalTeacher;
+    }
+
+    public Teacher getNewTeacher() {
+        return newTeacher;
+    }
+
+    public void setNewTeacher(Teacher newTeacher) {
+        this.newTeacher = newTeacher;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public LocalDateTime getSubstituteTime() {
+        return substituteTime;
+    }
+
+    public void setSubstituteTime(LocalDateTime substituteTime) {
+        this.substituteTime = substituteTime;
+    }
+
     // getters and setters
 }

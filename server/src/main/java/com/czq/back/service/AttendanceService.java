@@ -1,8 +1,14 @@
 package com.czq.back.service;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.PageDTO;
 import com.czq.back.entity.Attendance;
+import com.czq.back.entity.Section;
 import com.czq.back.repo.AttendanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.validation.Valid;
@@ -14,8 +20,13 @@ public class AttendanceService {
     @Autowired
     private AttendanceRepository attendanceRepository;
 
-    public List<Attendance> getAllAttendances() {
-        return attendanceRepository.findAll();
+    public ListRet getAllAttendances(PageDTO pageDTO) {
+        Pageable pageable = PageRequest.of(pageDTO.getPage(), pageDTO.getSize());
+        Page<Attendance> byKeyword = attendanceRepository.findByKeyword(pageDTO.getKeyword(), pageable);
+        List<Attendance> content = byKeyword.getContent();
+        long totalElements = byKeyword.getTotalElements();
+        ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
     }
 
     public Optional<Attendance> getAttendanceById(Long id) {

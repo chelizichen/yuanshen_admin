@@ -23,6 +23,7 @@ public class TeacherController {
 
     @PostMapping("/list")
     public ListRet getAllTeachers(@RequestBody PageDTO pageDTO) {
+        pageDTO.setPage(pageDTO.getPage()-1);
         return teacherService.getAllTeachers(pageDTO);
     }
 

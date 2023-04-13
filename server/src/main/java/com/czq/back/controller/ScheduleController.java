@@ -1,5 +1,6 @@
 package com.czq.back.controller;
 
+import com.czq.back.dto.ListRet;
 import com.czq.back.dto.PageDTO;
 import com.czq.back.dto.QueryIdDTO;
 import com.czq.back.entity.Schedule;
@@ -21,11 +22,11 @@ public class ScheduleController {
 
     @PostMapping("update")
     public ResponseEntity<Schedule> createSchedule(@RequestBody Schedule scheduleDTO) {
-        if(scheduleDTO.getId() == null){
+        if (scheduleDTO.getId() == null) {
             Schedule savedSchedule = scheduleService.createSchedule(scheduleDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedSchedule);
         }
-        Schedule updatedSchedule = scheduleService.updateSchedule(scheduleDTO.getId(),scheduleDTO);
+        Schedule updatedSchedule = scheduleService.updateSchedule(scheduleDTO.getId(), scheduleDTO);
         return ResponseEntity.ok(updatedSchedule);
 
     }
@@ -44,9 +45,10 @@ public class ScheduleController {
     }
 
     @PostMapping("list")
-    public ResponseEntity<List<Schedule>> getAllSchedules(@RequestBody PageDTO pageDTO) {
-        List<Schedule> scheduleDTOList = scheduleService.getAllSchedules();
-        return ResponseEntity.ok(scheduleDTOList);
+    public ListRet getAllSchedules(@RequestBody PageDTO pageDTO) {
+        pageDTO.setPage(pageDTO.getPage() - 1);
+        final ListRet allSchedules = scheduleService.getAllSchedules(pageDTO);
+        return allSchedules;
     }
 
 }

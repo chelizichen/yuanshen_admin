@@ -43,6 +43,7 @@ public class SectionController {
 
     @PostMapping("list")
     public ListRet getAllSections(@RequestBody PageDTO pageDTO) {
+        pageDTO.setPage(pageDTO.getPage() - 1);
         final ListRet allSections = sectionService.getAllSections(pageDTO);
         return allSections;
     }

@@ -15,10 +15,10 @@
       <template #title>
         <span>教师管理</span>
       </template>
-      <el-menu-item index="2-1">
+      <el-menu-item index="2-1" @click="to('/admin/teacher/teacher')">
         <div>教师信息</div>
       </el-menu-item>
-      <el-menu-item index="2-2">
+      <el-menu-item index="2-2" @click="to('/admin/teacher/research')">
         <div>教师科研</div>
       </el-menu-item>
       <el-menu-item index="2-3">
@@ -32,13 +32,16 @@
       <template #title>
         <span>课程管理</span>
       </template>
-      <el-menu-item index="3-1">
+      <el-menu-item index="3-1" @click="to('/admin/course/course')">
         <div>课程信息</div>
       </el-menu-item>
-      <el-menu-item index="3-2">
+      <el-menu-item index="3-2" @click="to('/admin/course/schedule')">
         <div>课程安排</div>
       </el-menu-item>
-      <el-menu-item index="3-3">
+      <el-menu-item index="3-3" @click="to('/admin/course/section')">
+        <div>课表安排</div>
+      </el-menu-item>
+      <el-menu-item index="3-4" @click="to('/admin/course/substitutes')">
         <div>代课安排</div>
       </el-menu-item>
     </el-sub-menu>
@@ -79,6 +82,9 @@ import { useRouter } from 'vue-router';
 import Logo from '/Logo.jpeg'
 const router = useRouter()
 
+function to(path: string) {
+  router.push(path)
+}
 
 </script>
 

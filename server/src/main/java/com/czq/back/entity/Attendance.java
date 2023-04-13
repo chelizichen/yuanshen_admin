@@ -34,6 +34,11 @@ public class Attendance {
     @JoinColumn(name = "section_id", referencedColumnName = "section_id")
     private Section section;
 
+    // 记录类型 1 教师 2 学生
+    @Column(name = "type", nullable = false)
+    private String type;
+
+
     // Constructors, getters, and setters
 
     public Long getId() {
@@ -82,6 +87,14 @@ public class Attendance {
 
     public void setTeacherId(Boolean teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
 

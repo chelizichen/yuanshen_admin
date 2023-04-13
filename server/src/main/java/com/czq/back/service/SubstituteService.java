@@ -1,8 +1,14 @@
 package com.czq.back.service;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.PageDTO;
+import com.czq.back.entity.Student;
 import com.czq.back.entity.Substitute;
 import com.czq.back.repo.SubstituteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +19,14 @@ public class SubstituteService {
     private  SubstituteRepository substituteRepository;
 
 
-    public List<Substitute> getAllSubstitutes() {
-        return substituteRepository.findAll();
+    public ListRet getAllSubstitutes(PageDTO pageDTO) {
+
+        Pageable pageable = PageRequest.of(pageDTO.getPage(), pageDTO.getSize());
+        Page<Substitute> byKeyword = substituteRepository.findByKeyword(pageDTO.getKeyword(), pageable);
+        List<Substitute> content = byKeyword.getContent();
+        long totalElements = byKeyword.getTotalElements();
+        ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
     }
 
     public Substitute getSubstituteById(Long id) {

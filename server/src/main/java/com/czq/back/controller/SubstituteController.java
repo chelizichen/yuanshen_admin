@@ -1,5 +1,8 @@
 package com.czq.back.controller;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.PageDTO;
+import com.czq.back.dto.QueryIdDTO;
 import com.czq.back.entity.Substitute;
 import com.czq.back.service.SubstituteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,35 +12,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/substitutes")
+@RequestMapping("substitutes")
 public class SubstituteController {
     @Autowired
     private SubstituteService substituteService;
 
 
-    @GetMapping
-    public List<Substitute> getAllSubstitutes() {
-        return substituteService.getAllSubstitutes();
+    @PostMapping("list")
+    public ListRet getAllSubstitutes(@RequestBody PageDTO pageDTO) {
+        pageDTO.setPage(pageDTO.getPage() - 1);
+        return substituteService.getAllSubstitutes(pageDTO);
     }
 
-    @GetMapping("/{id}")
-    public Substitute getSubstituteById(@PathVariable Long id) {
-        return substituteService.getSubstituteById(id);
+    @PostMapping("one")
+    public Substitute getSubstituteById(@RequestBody QueryIdDTO queryIdDTO) {
+        return substituteService.getSubstituteById(queryIdDTO.getId());
     }
 
-    @PostMapping
-    public Substitute createSubstitute(@RequestBody Substitute substitute) {
-        return substituteService.createSubstitute(substitute);
+
+    @PostMapping("update")
+    public Substitute updateSubstitute(@RequestBody Substitute substitute) {
+        if(substitute.getId() != null){
+            return substituteService.updateSubstitute(substitute.getId(),substitute);
+        }
+        return  substituteService.createSubstitute(substitute);
     }
 
-    @PutMapping("/{id}")
-    public Substitute updateSubstitute(@PathVariable Long id, @RequestBody Substitute substitute) {
-        return substituteService.updateSubstitute(id, substitute);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteSubstitute(@PathVariable Long id) {
-        boolean isDeleted = substituteService.deleteSubstitute(id);
+    @PostMapping("del")
+    public ResponseEntity<Boolean> deleteSubstitute(@RequestBody QueryIdDTO queryIdDTO) {
+        boolean isDeleted = substituteService.deleteSubstitute(queryIdDTO.getId());
         return ResponseEntity.ok(isDeleted);
     }
 }

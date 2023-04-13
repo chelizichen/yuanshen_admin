@@ -3,7 +3,6 @@ package com.czq.back.service;
 import com.czq.back.dto.ListRet;
 import com.czq.back.dto.LoginDTO;
 import com.czq.back.dto.PageDTO;
-import com.czq.back.entity.Course;
 import com.czq.back.entity.Teacher;
 import com.czq.back.repo.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;

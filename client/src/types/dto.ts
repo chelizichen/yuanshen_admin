@@ -82,6 +82,15 @@ export type Research = {
   awardDate: string;
 }
 
+// Research.ts
+export type Substitute = {
+  id: number;
+  originalTeacher: string;
+  newTeacher: string;
+  course: string;
+  substituteTime: string;
+};
+
 export type Pagination = {
   page: string | number,
   size: string | number,

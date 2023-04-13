@@ -40,6 +40,7 @@ public class CourseController {
 
     @PostMapping("list")
     public ListRet getAllCourses(@RequestBody PageDTO pageDTO) {
+        pageDTO.setPage(pageDTO.getPage()-1);
         final ListRet allCourses = courseService.getAllCourses(pageDTO);
         return allCourses;
     }

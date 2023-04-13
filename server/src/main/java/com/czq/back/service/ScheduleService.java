@@ -1,8 +1,14 @@
 package com.czq.back.service;
 
+import com.czq.back.dto.ListRet;
+import com.czq.back.dto.PageDTO;
 import com.czq.back.entity.Schedule;
+import com.czq.back.entity.Section;
 import com.czq.back.repo.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +19,13 @@ public class ScheduleService {
     @Autowired
     private ScheduleRepository scheduleRepository;
 
-    public List<Schedule> getAllSchedules() {
-        return scheduleRepository.findAll();
+    public ListRet getAllSchedules(PageDTO pageDTO) {
+        Pageable pageable = PageRequest.of(pageDTO.getPage(), pageDTO.getSize());
+        Page<Schedule> byKeyword = scheduleRepository.findByKeyword(pageDTO.getKeyword(), pageable);
+        List<Schedule> content = byKeyword.getContent();
+        long totalElements = byKeyword.getTotalElements();
+        ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
     }
 
     public Optional<Schedule> getScheduleById(Long id) {

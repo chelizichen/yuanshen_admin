@@ -19,7 +19,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/research")
+@RequestMapping("research")
 public class ResearchController {
 
     @Autowired
@@ -27,6 +27,7 @@ public class ResearchController {
 
     @PostMapping("list")
     public ListRet getAllResearch(@RequestBody PageDTO pageDTO) {
+        pageDTO.setPage(pageDTO.getPage()-1);
         Pageable pageable = PageRequest.of(pageDTO.getPage(), pageDTO.getSize());
         Page<Research> byKeyword = researchRepository.findByKeyword(pageDTO.getKeyword(), pageable);
         List<Research> content = byKeyword.getContent();

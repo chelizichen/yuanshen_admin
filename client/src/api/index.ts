@@ -1,4 +1,4 @@
-import { Assignment, Attendance, Course, Login, Pagination, QueryId, Research, Section, Student, Teacher } from '../types/dto'
+import { Assignment, Attendance, Course, Login, Pagination, QueryId, Research, Schedule, Section, Student, Teacher } from '../types/dto'
 import API from '../utils/request'
 
 export const AssignmentAPI = {
@@ -195,6 +195,57 @@ export const TeacherAPI = {
   }
 };
 
+export const SubstituteAPI = {
+  list(data: Pagination) {
+    return API({
+      url: "substitutes/list",
+      data,
+    });
+  },
+  one(data: QueryId) {
+    return API({
+      url: "substitutes/one",
+      data,
+    });
+  },
+  update(data: Teacher) {
+    return API({
+      url: "substitutes/update",
+      data,
+    });
+  },
+  del(data: QueryId) {
+    return API({
+      url: "substitutes/del",
+      data,
+    });
+  },
 
+};
 
-
+export const ScheduleAPI = {
+  list(data: Pagination) {
+    return API({
+      url: "schedules/list",
+      data,
+    });
+  },
+  one(data: QueryId) {
+    return API({
+      url: "schedules/one",
+      data,
+    });
+  },
+  update(data: Schedule) {
+    return API({
+      url: "schedules/update",
+      data,
+    });
+  },
+  del(data: QueryId) {
+    return API({
+      url: "schedules/del",
+      data,
+    });
+  },
+};
