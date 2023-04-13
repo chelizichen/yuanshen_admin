@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/server": {
-        target: `http://localhost:9999`,
+        target: `http://localhost:8080`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/server/, ""),
       },

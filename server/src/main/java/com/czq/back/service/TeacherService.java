@@ -29,6 +29,7 @@ public class TeacherService {
         teacher.setPhone(teacherDTO.getPhone());
         teacher.setExperience(teacherDTO.getExperience());
         teacher.setEmail(teacherDTO.getEmail());
+        teacher.setStatus(teacherDTO.getStatus());
         // set other teacher properties as needed
         Teacher savedTeacher = teacherRepository.save(teacher);
         return savedTeacher;
@@ -71,8 +72,14 @@ public class TeacherService {
     }
 
     public Teacher login (LoginDTO loginDTO){
-        final Optional<Teacher> byNameAndEmail = teacherRepository.findByNameAndEmail(loginDTO.getPhone());
-        return byNameAndEmail.orElse(null);
+        final Optional<Teacher> byPhone = teacherRepository.findByPhone(loginDTO.getPhone());
+        if(byPhone.isPresent()){
+            if (byPhone.get().getPassword().equals(loginDTO.getPassword())) {
+                return byPhone.get();
+            }
+            return null;
+        }
+        return null;
     }
 
     // add other methods as needed

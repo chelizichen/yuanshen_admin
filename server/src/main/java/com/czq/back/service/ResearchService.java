@@ -28,7 +28,7 @@ public class ResearchService {
     public Research updateResearch(Long id, Research research) {
         Optional<Research> existingResearch = researchRepository.findById(id);
         if (existingResearch.isPresent()) {
-            research.setId(id);
+            research.setResearchId(id);
             return researchRepository.save(research);
         }
         return null;

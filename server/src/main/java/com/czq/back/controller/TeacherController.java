@@ -3,6 +3,7 @@ package com.czq.back.controller;
 import com.czq.back.dto.ListRet;
 import com.czq.back.dto.LoginDTO;
 import com.czq.back.dto.PageDTO;
+import com.czq.back.dto.QueryIdDTO;
 import com.czq.back.entity.Teacher;
 import com.czq.back.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/teachers")
+@RequestMapping("teachers")
 public class TeacherController {
 
 
@@ -26,25 +27,25 @@ public class TeacherController {
     }
 
     @PostMapping("/one")
-    public Teacher getTeacherById(@RequestParam("id") Long id) {
-        return teacherService.getTeacherById(id);
+    public Teacher getTeacherById(@RequestBody QueryIdDTO queryIdDTO) {
+        return teacherService.getTeacherById(queryIdDTO.getId());
     }
 
     @PostMapping("/update")
     public Teacher updateTeacher(@RequestBody Teacher teacherDetails) {
-
+        System.out.println("测试打印"+teacherDetails);
         if(teacherDetails.getId() != null){
-            final Teacher teacher = teacherService.saveTeacher(teacherDetails);
+            final Teacher teacher = teacherService.updateTeacher(teacherDetails);
             return teacher;
         }else{
-            final Teacher teacher = teacherService.updateTeacher(teacherDetails);
+            final Teacher teacher = teacherService.saveTeacher(teacherDetails);
             return teacher;
         }
     }
 
-    @GetMapping("/del")
-    public ResponseEntity<?> deleteTeacher(@RequestParam("id") Long id) {
-        teacherService.deleteTeacherById(id);
+    @PostMapping("/del")
+    public ResponseEntity<?> deleteTeacher(@RequestBody QueryIdDTO queryIdDTO) {
+        teacherService.deleteTeacherById(queryIdDTO.getId());
         return ResponseEntity.ok().build();
     }
 

@@ -7,6 +7,8 @@ export type Teacher = {
   subject?: string;
   experience?: number;
   certification?: string;
+  password: string;
+  status: string;
 };
 
 // Student.ts
@@ -81,5 +83,16 @@ export type Research = {
 }
 
 export type Pagination = {
-  
+  page: string | number,
+  size: string | number,
+  keyword: string
+}
+
+export type QueryId = {
+  id:string|number
+}
+
+export type Login = {
+  phone: string;
+  password: string;
 }

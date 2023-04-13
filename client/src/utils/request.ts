@@ -4,6 +4,8 @@ const request = axios.create({
   baseURL: "/server/",
   timeout: 50000,
   headers: { "Content-Type": "application/json;charset=utf-8" },
+  method:"post"
+  
 });
 
 

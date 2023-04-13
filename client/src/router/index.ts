@@ -11,11 +11,15 @@ import {
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    redirect:"/admin",
+    redirect: "/admin",
   },
   {
     path: "/login",
-    component:()=>import("@/page/login/index.vue")
+    component: () => import("@/page/login/index.vue"),
+  },
+  {
+    path: "/create",
+    component: () => import("@/page/login/create.vue"),
   },
   {
     path: "/admin",

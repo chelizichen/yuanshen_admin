@@ -36,6 +36,23 @@ public class Teacher {
     @Column(name = "certification")
     private String certification;
 
+    // 密码
+    @Column(name = "password")
+    private String password;
+
+    // 状态 0 1
+    @Column(name = "status")
+    private String status;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+
     public Long getId() {
         return id;
     }
@@ -92,6 +109,13 @@ public class Teacher {
         this.certification = certification;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     // Constructors, getters, and setters
 }

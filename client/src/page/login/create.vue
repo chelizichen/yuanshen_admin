@@ -2,7 +2,7 @@
   <div class="login">
     <el-card class="login-card">
       <div class="login-form">
-        <h3 class="login-title">教师管理平台</h3>
+        <h3 class="login-title">教师管理平台（注册界面）</h3>
         <el-form :model="data.form" label-width="0px" size="medium">
           <el-form-item>
             <el-input v-model="data.form.phone" placeholder="请输入电话号码"></el-input>
@@ -11,9 +11,13 @@
             <el-input v-model="data.form.password" type="password" placeholder="请输入密码"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="login">登录</el-button>
-            <el-button type="success" @click="create">注册</el-button>
-
+            <el-input v-model="data.form.email" placeholder="请输入邮箱"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-input v-model="data.form.name" placeholder="请输入姓名"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="create">登录</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -25,29 +29,26 @@ import { defineComponent, reactive } from 'vue'
 import { useRouter } from 'vue-router';
 import { TeacherAPI } from '../../api';
 import { ElNotification } from 'element-plus';
+import { Teacher } from '../../types/dto';
 
 const router = useRouter()
 
 const data = reactive({
-  form: {
+  form: <Teacher>{
     phone: '',
-    password: ''
+    password: '',
+    name: '',
+    email: '',
   }
 })
 
-async function login() {
-  // const ret = await TeacherAPI.login(data.form)
-  // if (!ret) {
-  //   ElNotification.error({
-  //     'title':"登录失败"
-  //   })
-  // } else {
-    router.push("/admin")
-  // }
-}
-
 async function create() {
-    router.push("/create")
+  data.form.status = "0";
+  TeacherAPI.update(data.form)
+  ElNotification.success({
+    'title': "注册成功"
+  })
+  router.push("/login")
 }
 </script>
 

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/schedules")
+@RequestMapping("schedules")
 public class ScheduleController {
 
     @Autowired
@@ -30,7 +30,7 @@ public class ScheduleController {
 
     }
 
-    @PostMapping("/get")
+    @PostMapping("/one")
     public ResponseEntity<Optional<Schedule>> getScheduleById(@RequestBody QueryIdDTO queryIdDTO) {
         Optional<Schedule> scheduleDTO = scheduleService.getScheduleById(queryIdDTO.getId());
         return ResponseEntity.ok(scheduleDTO);

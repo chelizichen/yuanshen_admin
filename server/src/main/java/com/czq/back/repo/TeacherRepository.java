@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface TeacherRepository extends JpaRepository<Teacher, Long> {
     @Query("SELECT u FROM Teacher u WHERE  u.phone = ?1 ")
-    Optional<Teacher> findByNameAndEmail(String phone);
+    Optional<Teacher> findByPhone(String phone);
 
     @Query("SELECT a FROM  Teacher a  WHERE a.name LIKE %?1%")
     Page<Teacher> findByKeyword(String keyword, Pageable pageable);

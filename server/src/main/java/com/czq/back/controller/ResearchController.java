@@ -35,7 +35,7 @@ public class ResearchController {
         return listRet;
     }
 
-    @PostMapping("get")
+    @PostMapping("one")
     public Research getResearchById(@RequestBody QueryIdDTO queryIdDTO) {
         return researchRepository.findById(queryIdDTO.getId()).orElseThrow(() -> new ResourceNotFoundException("Research not found with id: " + queryIdDTO.getId()));
     }

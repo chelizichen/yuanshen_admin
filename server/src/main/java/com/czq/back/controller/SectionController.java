@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/sections")
+@RequestMapping("sections")
 public class SectionController {
 
     @Autowired
     private SectionService sectionService;
 
-    @PostMapping("/get")
+    @PostMapping("/one")
     public ResponseEntity<Section> getSectionById(@RequestBody QueryIdDTO queryIdDTO) {
         Section sectionDTO = sectionService.getSectionById(queryIdDTO.getId());
         return ResponseEntity.ok(sectionDTO);
