@@ -7,15 +7,13 @@
   <div>
     <el-table :data="state.list" style="width: 100%">
       <el-table-column prop="id" label="ID" />
-      <el-table-column prop="email" label="邮箱" />
-      <el-table-column prop="experience" label="经历" />
-      <el-table-column prop="certification" label="证书" />
-      <el-table-column prop="name" label="姓名" />
-      <el-table-column prop="password" label="密码" />
-      <el-table-column prop="phone" label="电话" />
-      <el-table-column prop="status" label="状态" />
-      <el-table-column prop="subject" label="任课" />
-      <el-table-column prop="permission" label="权限" />
+      <el-table-column prop="date" label="日期" />
+      <el-table-column prop="present" label="是否在场" />
+      <el-table-column prop="section.course.name" label="课程" />
+      <el-table-column prop="section.location" label="授课教室" />
+      <el-table-column prop="teacherId" label="记录老师ID" />
+      <el-table-column prop="student.id" label="学生ID" />
+      <el-table-column prop="student.name" label="学生名称" />
       <el-table-column label="操作">
         <template #default="scope">
           <el-button type="primary" size="small" @click="handle_edit(scope.row)">编辑</el-button>
@@ -39,11 +37,11 @@ import { onMounted, reactive, ref } from 'vue';
 import Edit from './edit.vue'
 import _ from 'lodash'
 import { ElNotification } from 'element-plus';
-import { Pagination, Teacher } from '../../../types/dto';
-import { TeacherAPI } from '../../../api';
+import { Attendance, Pagination, Teacher } from '../../../types/dto';
+import { AttendanceAPI } from '../../../api';
 
 const state = reactive({
-  list: <Array<Teacher>>[]
+  list: <Array<Attendance>>[]
 })
 const pagination = ref<Pagination>({
   size: 10,
@@ -75,13 +73,13 @@ function handle_add() {
   dialogVal.value = {}
 }
 
-async function handle_del(item: Teacher) {
-  const data = await TeacherAPI.del({ id: item.teacherId })
+async function handle_del(item: Attendance) {
+  const data = await AttendanceAPI.del({ id: item.attendanceId })
   init()
 }
 
 async function init() {
-  const data = await TeacherAPI.list(pagination.value)
+  const data = await AttendanceAPI.studentList(pagination.value)
   state.list = data.list
   console.log(data);
 

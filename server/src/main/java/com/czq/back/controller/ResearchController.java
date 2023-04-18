@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.management.Query;
-import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -42,7 +41,7 @@ public class ResearchController {
     }
 
     @PostMapping("update")
-    public Research createResearch(@Valid @RequestBody Research researchDetail) {
+    public Research createResearch( @RequestBody Research researchDetail) {
         if(researchDetail.getResearchId() != null){
             return researchRepository.save(researchDetail);
         }

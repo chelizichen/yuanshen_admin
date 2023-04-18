@@ -70,6 +70,15 @@ public class TeacherService {
         return listRet;
     }
 
+    public ListRet AdminFindByKeyword(PageDTO pageDTO) {
+        Pageable pageable = PageRequest.of(pageDTO.getPage(), pageDTO.getSize());
+        Page<Teacher> byKeyword = teacherRepository.AdminFindByKeyword(pageDTO.getKeyword(),pageable);
+        List<Teacher> content = byKeyword.getContent();
+        long totalElements = byKeyword.getTotalElements();
+        ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
+    }
+
     public Teacher login (LoginDTO loginDTO){
         final Optional<Teacher> byPhone = teacherRepository.findByPhone(loginDTO.getPhone());
         if(byPhone.isPresent()){
