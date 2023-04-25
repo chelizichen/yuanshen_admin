@@ -17,7 +17,7 @@
             <el-input v-model="data.form.name" placeholder="请输入姓名"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="create">登录</el-button>
+            <el-button type="primary" @click="create">注册</el-button>
           </el-form-item>
         </el-form>
       </div>

@@ -7,14 +7,14 @@
   <div>
     <el-table :data="state.list" style="width: 100%">
       <el-table-column prop="id" label="ID" />
-      <el-table-column prop="email" label="小区名称" />
-      <el-table-column prop="experience" label="坐标位置" />
-      <el-table-column prop="certification" label="小区名称" />
-      <el-table-column prop="name" label="坐标位置" />
-      <el-table-column prop="password" label="小区名称" />
-      <el-table-column prop="phone" label="坐标位置" />
-      <el-table-column prop="status" label="小区名称" />
-      <el-table-column prop="subject" label="坐标位置" />
+      <el-table-column prop="email" label="邮箱" />
+      <el-table-column prop="experience" label="经验" />
+      <el-table-column prop="certification" label="认证" />
+      <el-table-column prop="name" label="名称" />
+      <el-table-column prop="password" label="密码" />
+      <el-table-column prop="phone" label="电话" />
+      <el-table-column prop="status" label="状态" />
+      <el-table-column prop="subject" label="课程" />
       <el-table-column label="操作">
         <template #default="scope">
           <el-button type="primary" size="small" @click="handle_edit(scope.row)">编辑</el-button>
@@ -82,8 +82,6 @@ async function handle_del(item: Teacher) {
 async function init() {
   const data = await TeacherAPI.list(pagination.value)
   state.list = data.list
-  console.log(data);
-
 }
 
 onMounted(() => {
