@@ -29,9 +29,15 @@ export const AssignmentAPI = {
 };
 
 export const AttendanceAPI = {
-  list(data: Pagination) {
+  studentList(data: Pagination) {
     return API({
-      url: "attendance/list",
+      url: "attendance/student/list",
+      data,
+    });
+  },
+  teacherList(data: Pagination) {
+    return API({
+      url: "attendance/teacher/list",
       data,
     });
   },
@@ -190,6 +196,12 @@ export const TeacherAPI = {
   login(data:Login) {
     return API({
       url: "teachers/login",
+      data,
+    });
+  },
+  adminList(data:Pagination){
+    return API({
+      url: "teachers/admin/list",
       data,
     });
   }

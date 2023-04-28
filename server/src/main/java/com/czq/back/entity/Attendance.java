@@ -22,7 +22,7 @@ public class Attendance {
     private Boolean present;
 
     @Column(name = "teacher_id", nullable = false)
-    private Boolean teacherId;
+    private Long teacherId;
 
     // 学生ID
     @ManyToOne
@@ -81,11 +81,11 @@ public class Attendance {
         this.section = section;
     }
 
-    public Boolean getTeacherId() {
+    public Long getTeacherId() {
         return teacherId;
     }
 
-    public void setTeacherId(Boolean teacherId) {
+    public void setTeacherId(Long teacherId) {
         this.teacherId = teacherId;
     }
 

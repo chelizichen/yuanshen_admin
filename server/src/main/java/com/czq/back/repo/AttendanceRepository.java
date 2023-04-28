@@ -15,6 +15,9 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     @Query("select a from Attendance a where a.teacherId = ?1 ")
     List<Attendance> findByTeacherId(Long teacherId);
 
-    @Query("SELECT a FROM  Attendance a  WHERE a.section.course.name LIKE %?1%")
-    Page<Attendance> findByKeyword(String keyword, Pageable pageable);
+    @Query("SELECT a FROM  Attendance a  WHERE a.section.course.name LIKE %?1% and a.type = '1'")
+    Page<Attendance> findByKeywordByTeacher(String keyword, Pageable pageable);
+
+    @Query("SELECT a FROM  Attendance a  WHERE a.section.course.name LIKE %?1% and a.type = '2'")
+    Page<Attendance> findByKeywordByStudent(String keyword, Pageable pageable);
 }

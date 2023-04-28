@@ -43,10 +43,24 @@ public class Teacher {
     // 状态 0 1
     @Column(name = "status")
     private String status;
+
+
+    // 1 教师
+    // 2 管理员
+    @Column(name = "permission")
+    private String permission;
+
+    public String getPermission() {
+        return permission;
+    }
+
+    public void setPermission(String permission) {
+        this.permission = permission;
+    }
+
     public String getStatus() {
         return status;
     }
-
     public void setStatus(String status) {
         this.status = status;
     }

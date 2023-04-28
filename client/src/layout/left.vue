@@ -1,5 +1,10 @@
 <template>
-  <el-menu class="el-menu-vertical-demo" default-active="2">
+  <el-menu class="el-menu-vertical-demo" 
+  default-active="2"     
+  background-color="#545c64"
+  text-color="#fff"
+  active-text-color="gold"
+  >
     <el-menu-item index="-1">
       <div>教师管理系统</div>
     </el-menu-item>
@@ -7,8 +12,8 @@
       <template #title>
         <span>系统管理</span>
       </template>
-      <el-menu-item index="1-1">
-        <div>账号管理</div>
+      <el-menu-item index="1-1" @click="to('/admin/system/user')">
+        <div >账号管理</div>
       </el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="2">
@@ -50,10 +55,10 @@
       <template #title>
         <span>考勤管理</span>
       </template>
-      <el-menu-item index="4-1">
+      <el-menu-item index="4-1" @click="to('/admin/attendance/teacher')">
         <div>教师考勤</div>
       </el-menu-item>
-      <el-menu-item index="4-2">
+      <el-menu-item index="4-2" @click="to('/admin/attendance/student')">
         <div>学生考勤</div>
       </el-menu-item>
     </el-sub-menu>

@@ -27,8 +27,20 @@ const routes: RouteRecordRaw[] = [
     component: () => import("@/page/admin/index.vue"),
     children: [
       {
+        path: "system/user",
+        component: () => import("@/page/system/user/list.vue"),
+      },
+      {
         path: "dashboard",
         component: () => import("@/page/dashboard/index.vue"),
+      },
+      {
+        path: "attendance/student",
+        component: () => import("@/page/attendance/student/list.vue"),
+      },
+      {
+        path: "attendance/teacher",
+        component: () => import("@/page/attendance/teacher/list.vue"),
       },
       {
         path: "teacher/teacher",

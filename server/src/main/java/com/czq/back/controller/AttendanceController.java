@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,10 +33,17 @@ public class AttendanceController {
         return ResponseEntity.ok(attendanceList);
     }
 
-    @PostMapping("list")
-    public ListRet getAllAttendance(@RequestBody PageDTO pageDTO) {
+    @PostMapping("teacher/list")
+    public ListRet getAllAttendanceByTeacher(@RequestBody PageDTO pageDTO) {
         pageDTO.setPage(pageDTO.getPage()-1);
-        final ListRet allAttendances = attendanceService.getAllAttendances(pageDTO);
+        final ListRet allAttendances = attendanceService.getAllAttendanceByTeacher(pageDTO);
+        return allAttendances;
+    }
+
+    @PostMapping("student/list")
+    public ListRet getAllAttendanceByStudent(@RequestBody PageDTO pageDTO) {
+        pageDTO.setPage(pageDTO.getPage()-1);
+        final ListRet allAttendances = attendanceService.getAllAttendanceByStudent(pageDTO);
         return allAttendances;
     }
 
@@ -47,7 +53,7 @@ public class AttendanceController {
     }
 
     @PostMapping("update")
-    public Attendance createAttendance(@Valid @RequestBody Attendance attendance) {
+    public Attendance createAttendance( @RequestBody Attendance attendance) {
         if(attendance.getId() != null){
             return attendanceService.updateAttendance(attendance.getId(),attendance);
         }

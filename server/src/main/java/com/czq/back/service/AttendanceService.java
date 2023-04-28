@@ -11,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,9 +19,18 @@ public class AttendanceService {
     @Autowired
     private AttendanceRepository attendanceRepository;
 
-    public ListRet getAllAttendances(PageDTO pageDTO) {
+    public ListRet getAllAttendanceByTeacher(PageDTO pageDTO) {
         Pageable pageable = PageRequest.of(pageDTO.getPage(), pageDTO.getSize());
-        Page<Attendance> byKeyword = attendanceRepository.findByKeyword(pageDTO.getKeyword(), pageable);
+        Page<Attendance> byKeyword = attendanceRepository.findByKeywordByTeacher(pageDTO.getKeyword(), pageable);
+        List<Attendance> content = byKeyword.getContent();
+        long totalElements = byKeyword.getTotalElements();
+        ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
+    }
+
+    public ListRet getAllAttendanceByStudent(PageDTO pageDTO) {
+        Pageable pageable = PageRequest.of(pageDTO.getPage(), pageDTO.getSize());
+        Page<Attendance> byKeyword = attendanceRepository.findByKeywordByStudent(pageDTO.getKeyword(), pageable);
         List<Attendance> content = byKeyword.getContent();
         long totalElements = byKeyword.getTotalElements();
         ListRet listRet = new ListRet(content, totalElements);
