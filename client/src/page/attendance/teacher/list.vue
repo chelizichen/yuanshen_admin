@@ -8,7 +8,11 @@
     <el-table :data="state.list" style="width: 100%">
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="date" label="日期" />
-      <el-table-column prop="present" label="是否在场" />
+      <el-table-column prop="present" label="是否在场" >
+        <template #default="scope">
+          <div>{{ scope.row.present?"在场":"不在场" }}</div>  
+        </template>
+      </el-table-column>
       <el-table-column prop="section.course.name" label="课程" />
       <el-table-column prop="section.location" label="授课教室" />
       <el-table-column prop="teacherId" label="教师ID" />
@@ -20,7 +24,6 @@
               <el-button type="danger" size="small">删除</el-button>
             </template>
           </el-popconfirm>
-
         </template>
       </el-table-column>
     </el-table>

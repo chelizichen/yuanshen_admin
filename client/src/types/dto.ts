@@ -85,9 +85,12 @@ export type Research = {
 // Research.ts
 export type Substitute = {
   id: number;
-  originalTeacher: string;
-  newTeacher: string;
-  course: string;
+  originalTeacher: Teacher;
+  newTeacher: Teacher;
+  course: Course;
+  courseId:string;
+  originTeacherId:string;
+  substituteTeacherId:string;
   substituteTime: string;
 };
 

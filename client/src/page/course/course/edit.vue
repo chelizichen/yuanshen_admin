@@ -1,19 +1,25 @@
 <template>
-  <el-dialog v-model="props.dialogFormVisible" title="Shipping address" @closed="close">
+  <el-dialog v-model="props.dialogFormVisible" title="更新课程" @closed="close">
     <el-form :model="props.val">
 
-      <el-form-item label="社区名称" :label-width="formLabelWidth">
+      <el-form-item label="课程名称" :label-width="formLabelWidth">
         <el-input v-model="props.val.name" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="社区位置" :label-width="formLabelWidth">
-        <el-input v-model="props.val.certification" autocomplete="off" />
+      <el-form-item label="课程描述" :label-width="formLabelWidth">
+        <el-input v-model="props.val.description" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="课程代码" :label-width="formLabelWidth">
+        <el-input v-model="props.val.code" autocomplete="off" />
+      </el-form-item>
+      <el-form-item label="学期" :label-width="formLabelWidth">
+        <el-input v-model="props.val.semester" autocomplete="off" />
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="close">取消</el-button>
         <el-button type="primary" @click="submit">
-          修改
+          更新
         </el-button>
       </span>
     </template>

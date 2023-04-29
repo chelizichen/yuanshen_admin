@@ -78,7 +78,6 @@ async function init() {
   const data = await SubstituteAPI.list(pagination.value)
   state.list = data.list
   console.log(data);
-
 }
 
 onMounted(() => {

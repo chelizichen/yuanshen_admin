@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="props.dialogFormVisible" title="Shipping address" @closed="close">
+  <el-dialog v-model="props.dialogFormVisible" title="代课更新" @closed="close">
     <el-form :model="props.val">
 
       <el-form-item label="社区名称" :label-width="formLabelWidth">
