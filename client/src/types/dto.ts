@@ -94,6 +94,18 @@ export type Substitute = {
   substituteTime: string;
 };
 
+// Research.ts
+export type Title = {
+  id: number;
+  name:string;
+  desc:string;
+};
+
+export type TitleDTO = {
+  teacherId: number;
+  titleId:number;
+};
+
 export type Pagination = {
   page: string | number,
   size: string | number,

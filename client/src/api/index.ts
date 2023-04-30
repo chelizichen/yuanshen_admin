@@ -1,3 +1,4 @@
+import { TitleDTO } from './../types/dto';
 import { Assignment, Attendance, Course, Login, Pagination, QueryId, Research, Schedule, Section, Student, Teacher } from '../types/dto'
 import API from '../utils/request'
 
@@ -257,6 +258,31 @@ export const ScheduleAPI = {
   del(data: QueryId) {
     return API({
       url: "schedules/del",
+      data,
+    });
+  },
+};
+
+
+export const TitleAPI = {
+  // 查询所有的职称了表
+  list(data: Pagination) {
+    return API({
+      url: "title/list",
+      data,
+    });
+  },
+  // 查询单个职称所代表的含义
+  // 并且查询出职称上所有的教师
+  one(data: TitleDTO) {
+    return API({
+      url: "title/getByTitle",
+      data,
+    });
+  },
+  update(data: TitleDTO) {
+    return API({
+      url: "title/setTitle",
       data,
     });
   },
