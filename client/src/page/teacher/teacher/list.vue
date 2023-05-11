@@ -12,12 +12,15 @@
       <el-table-column prop="name" label="姓名" />
       <el-table-column prop="email" label="邮箱" />
       <el-table-column prop="experience" label="经历" />
-      <el-table-column prop="certification" label="证书" />
+      <el-table-column prop="certification" label="认证" />
+      <el-table-column prop="name" label="姓名" />
       <el-table-column prop="password" label="密码" />
       <el-table-column prop="phone" label="电话" />
       <el-table-column prop="status" label="状态" />
       <el-table-column prop="subject" label="任课" />
       <el-table-column prop="permission" label="权限" />
+      <el-table-column prop="title.name" label="职称" >
+      </el-table-column>
       <el-table-column label="操作">
         <template #default="scope">
           <el-button type="primary" size="small" @click="handle_edit(scope.row)">编辑</el-button>

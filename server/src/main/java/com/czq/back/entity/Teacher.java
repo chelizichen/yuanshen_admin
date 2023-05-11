@@ -50,6 +50,29 @@ public class Teacher {
     @Column(name = "permission")
     private String permission;
 
+    @Column(name="title")
+    private Integer titleId;
+
+    @ManyToOne
+    @JoinColumn(name = "title",insertable = false,updatable = false)
+    private Title title;
+
+    public Integer getTitleId() {
+        return titleId;
+    }
+
+    public void setTitleId(Integer titleId) {
+        this.titleId = titleId;
+    }
+
+    public Title getTitle() {
+        return title;
+    }
+
+    public void setTitle(Title title) {
+        this.title = title;
+    }
+
     public String getPermission() {
         return permission;
     }

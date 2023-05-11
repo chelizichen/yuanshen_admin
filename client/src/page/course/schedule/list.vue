@@ -11,6 +11,7 @@
       <el-table-column prop="endDate" label="结束时间" />
       <el-table-column prop="section.location" label="任课地址" />
       <el-table-column prop="section.days" label="任课时间" />
+      <el-table-column prop="section.course.name" label="课名" />
       <el-table-column label="操作">
         <template #default="scope">
           <el-button type="primary" size="small" @click="handle_edit(scope.row)">编辑</el-button>
@@ -44,13 +45,12 @@ const pagination = ref<Pagination>({
   keyword: "",
   page: 1
 })
-// getCarPortListByCommunityId
 const dialogFormVisible = ref(false)
-const dialogVal = ref<any>()
+const dialogVal = ref<Schedule>()
 function handle_close() {
   dialogFormVisible.value = false
 }
-function handle_success(args: any) {
+function handle_success(args: Schedule) {
   // Notification
   ElNotification({
     title: "通知",
@@ -58,10 +58,13 @@ function handle_success(args: any) {
   })
   init()
 }
-function handle_edit(item: any) {
+function handle_edit(item: Schedule) {
   dialogFormVisible.value = true
   const newItem = _.cloneDeep(item)
   dialogVal.value = newItem
+  dialogVal.value.sectionId = newItem.section.id
+  dialogVal.value.teacherId = newItem.teacher.id
+
 }
 
 function handle_add() {

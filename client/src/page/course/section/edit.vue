@@ -13,7 +13,7 @@
       <span class="dialog-footer">
         <el-button @click="close">取消</el-button>
         <el-button type="primary" @click="submit">
-          修改
+          更新
         </el-button>
       </span>
     </template>

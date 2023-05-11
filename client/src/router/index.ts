@@ -70,6 +70,14 @@ const routes: RouteRecordRaw[] = [
         path: "course/section",
         component: () => import("@/page/course/section/list.vue"),
       },
+      {
+        path: "title/add",
+        component: () => import("@/page/title/add/list.vue"),
+      },
+      {
+        path: "title/title",
+        component: () => import("@/page/title/list/list.vue"),
+      },
     ],
   },
 ];

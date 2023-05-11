@@ -48,7 +48,6 @@
       </el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="4">
-
       <template #title>
         <span>考勤管理</span>
       </template>
@@ -57,6 +56,28 @@
       </el-menu-item>
       <el-menu-item index="4-2" @click="to('/admin/attendance/student')">
         <div>学生考勤</div>
+      </el-menu-item>
+    </el-sub-menu>
+    <el-sub-menu index="5">
+      <template #title>
+        <span>职称管理</span>
+      </template>
+      <el-menu-item index="5-1" @click="to('/admin/title/add')">
+        <div>分配职称</div>
+      </el-menu-item>
+      <el-menu-item index="5-2" @click="to('/admin/title/title')">
+        <div>职称列表</div>
+      </el-menu-item>
+    </el-sub-menu>
+    <el-sub-menu index="6">
+      <template #title>
+        <span>职称管理</span>
+      </template>
+      <el-menu-item index="6-1">
+        <div>分配职称</div>
+      </el-menu-item>
+      <el-menu-item index="6-2">
+        <div>职称列表</div>
       </el-menu-item>
     </el-sub-menu>
   </el-menu>

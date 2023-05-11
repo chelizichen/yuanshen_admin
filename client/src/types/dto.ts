@@ -85,10 +85,25 @@ export type Research = {
 // Research.ts
 export type Substitute = {
   id: number;
-  originalTeacher: string;
-  newTeacher: string;
-  course: string;
+  originalTeacher: Teacher;
+  newTeacher: Teacher;
+  course: Course;
+  courseId:string;
+  originTeacherId:string;
+  substituteTeacherId:string;
   substituteTime: string;
+};
+
+// Research.ts
+export type Title = {
+  id: number;
+  name:string;
+  desc:string;
+};
+
+export type TitleDTO = {
+  teacherId: number;
+  titleId:number;
 };
 
 export type Pagination = {

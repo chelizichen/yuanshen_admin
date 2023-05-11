@@ -34,6 +34,7 @@ public class SubstituteService {
     }
 
     public Substitute createSubstitute(Substitute substitute) {
+        System.out.println(substitute.toString());
         return substituteRepository.save(substitute);
     }
 

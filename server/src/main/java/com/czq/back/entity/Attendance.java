@@ -21,8 +21,14 @@ public class Attendance {
     @Column(name = "present", nullable = false)
     private Boolean present;
 
-    @Column(name = "teacher_id", nullable = false)
+    @Column(name = "teacher_id", nullable = false,insertable=false ,updatable=false)
     private Long teacherId;
+
+    @Column(name = "section_id", nullable = false,insertable=false ,updatable=false)
+    private Long sectionId;
+
+    @Column(name = "student_id", nullable = false,insertable=false ,updatable=false)
+    private Long studentId;
 
     // 学生ID
     @ManyToOne
@@ -95,6 +101,22 @@ public class Attendance {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Long getSectionId() {
+        return sectionId;
+    }
+
+    public void setSectionId(Long sectionId) {
+        this.sectionId = sectionId;
+    }
+
+    public Long getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 }
 
