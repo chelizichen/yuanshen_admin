@@ -26,11 +26,8 @@
       <el-menu-item index="2-2" @click="to('/admin/teacher/research')">
         <div>教师科研</div>
       </el-menu-item>
-      <el-menu-item index="2-3">
+      <el-menu-item index="2-3" @click="to('/admin/teacher/task')">
         <div>教学任务</div>
-      </el-menu-item>
-      <el-menu-item index="2-4">
-        <div>教师评价</div>
       </el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="3">
@@ -60,17 +57,6 @@
       </el-menu-item>
       <el-menu-item index="4-2" @click="to('/admin/attendance/student')">
         <div>学生考勤</div>
-      </el-menu-item>
-    </el-sub-menu>
-    <el-sub-menu index="5">
-      <template #title>
-        <span>教师管理</span>
-      </template>
-      <el-menu-item index="5-1">
-        <div>教师列表</div>
-      </el-menu-item>
-      <el-menu-item index="5-2">
-        <div>科研列表</div>
       </el-menu-item>
     </el-sub-menu>
   </el-menu>

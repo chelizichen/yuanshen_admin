@@ -260,4 +260,10 @@ export const ScheduleAPI = {
       data,
     });
   },
+  getById(data:QueryId){
+    return API({
+      url: "schedules/getById",
+      data,
+    });
+  }
 };

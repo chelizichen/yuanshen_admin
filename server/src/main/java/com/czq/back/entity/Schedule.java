@@ -21,8 +21,19 @@ public class Schedule {
     @Column(name = "end_date", nullable = false)
     private Date endDate;
 
+    public Long getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Long teacherId) {
+        this.teacherId = teacherId;
+    }
+
+    @Column(name = "teacher_id", nullable = false)
+    private Long teacherId;
+
     @ManyToOne
-    @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id")
+    @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id",insertable = false,updatable = false)
     private Teacher teacher;
 
     @ManyToOne

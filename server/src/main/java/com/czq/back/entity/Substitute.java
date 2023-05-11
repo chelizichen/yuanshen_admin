@@ -25,6 +25,7 @@ public class Substitute {
     @Column(name = "substitute_time")
     private LocalDateTime substituteTime;
 
+
     public Long getId() {
         return id;
     }

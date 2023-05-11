@@ -51,4 +51,10 @@ public class ScheduleController {
         return allSchedules;
     }
 
+    @PostMapping("getById")
+    public ListRet getById(@RequestBody QueryIdDTO queryIdDTO) {
+        final ListRet allSchedules = scheduleService.findById(queryIdDTO);
+        return allSchedules;
+    }
+
 }

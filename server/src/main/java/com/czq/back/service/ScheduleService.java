@@ -2,6 +2,7 @@ package com.czq.back.service;
 
 import com.czq.back.dto.ListRet;
 import com.czq.back.dto.PageDTO;
+import com.czq.back.dto.QueryIdDTO;
 import com.czq.back.entity.Schedule;
 import com.czq.back.entity.Section;
 import com.czq.back.repo.ScheduleRepository;
@@ -25,6 +26,12 @@ public class ScheduleService {
         List<Schedule> content = byKeyword.getContent();
         long totalElements = byKeyword.getTotalElements();
         ListRet listRet = new ListRet(content, totalElements);
+        return listRet;
+    }
+
+    public ListRet findById(QueryIdDTO queryIdDTO) {
+        final List<Schedule> byTeacherId = scheduleRepository.getByTeacherId(queryIdDTO.getId());
+        final ListRet listRet = new ListRet(byTeacherId, (long) byTeacherId.size());
         return listRet;
     }
 
