@@ -1,110 +1,40 @@
-// Teacher.ts
-export type Teacher = {
-  teacherId: number;
-  name: string;
-  email: string;
-  phone?: string;
-  subject?: string;
-  experience?: number;
-  certification?: string;
+export interface User {
+  userId: string;
+  username: string;
   password: string;
-  status: string;
-};
-
-// Student.ts
-export type Student = {
-  studentId: number;
-  name: string;
-  email: string;
-  enrollmentDate: string;
+  signature: string;
+  level: string;
+  loginTime: string;
+  createTime: string;
+  truthName: string;
+  avatar: string;
 }
 
-// Course.ts
-export type Course = {
-  courseId: number;
-  name: string;
-  code: string;
-  description: string;
-  semester: string;
+export interface Follows {
+  id: string;
+  postId: string;
+  toUserId: string;
+  content: string;
+  releaseTime: string;
+  like: string;
+  disLike: string;
+  userId: string;
 }
 
-// Section.ts
-export type Section = {
-  sectionId: number;
-  sectionNumber: number;
-  days: string;
-  startTime: string;
-  endTime: string;
-  location: string;
-  courseId: number;
-}
-
-// Schedule.ts
-export type Schedule = {
-  scheduleId: number;
-  startDate: string;
-  endDate: string;
-  teacherId: number;
-  sectionId: number;
-}
-
-// Attendance.ts
-export type Attendance = {
-  attendanceId: number;
-  date: string;
-  present: boolean;
-  studentId: number;
-  sectionId: number;
-}
-
-// Assignment.ts
-export type Assignment = {
-  assignmentId: number;
-  name: string;
+export interface Post {
+  id: string;
+  title: string;
+  releaseTime: string;
   type: string;
-  dueDate: string;
-  maxPoints: number;
-  sectionId: number;
+  tags: string;
+  views: string;
+  like: string;
+  content: string;
+  img: string;
+  userId: string;
 }
 
-// Research.ts
-export type Research = {
-  researchId: number;
-  teacherId: number;
-  researchTopic: string;
-  paperTitle: string;
-  paperJournal: string;
-  paperDate: string;
-  paperVolume: number;
-  paperIssue: number;
-  paperPages: string;
-  awardName: string;
-  awardDate: string;
-}
 
-// Research.ts
-export type Substitute = {
-  id: number;
-  originalTeacher: Teacher;
-  newTeacher: Teacher;
-  course: Course;
-  courseId:string;
-  originTeacherId:string;
-  substituteTeacherId:string;
-  substituteTime: string;
-};
-
-// Research.ts
-export type Title = {
-  id: number;
-  name:string;
-  desc:string;
-};
-
-export type TitleDTO = {
-  teacherId: number;
-  titleId:number;
-};
 
 export type Pagination = {
   page: string | number,
@@ -117,6 +47,6 @@ export type QueryId = {
 }
 
 export type Login = {
-  phone: string;
+  username: string;
   password: string;
 }

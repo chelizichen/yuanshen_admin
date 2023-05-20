@@ -31,52 +31,28 @@ const routes: RouteRecordRaw[] = [
         component: () => import("@/page/system/user/list.vue"),
       },
       {
+        path: "system/user_add",
+        component: () => import("@/page/system/user/edit.vue"),
+      },
+      {
+        path: "posts/list",
+        component: () => import("@/page/posts/list.vue"),
+      },
+      {
+        path: "posts/edit",
+        component: () => import("@/page/posts/edit.vue"),
+      },
+      {
+        path: "follows/list",
+        component: () => import("@/page/follows/list.vue"),
+      },
+      {
+        path: "follows/edit",
+        component: () => import("@/page/follows/edit.vue"),
+      },
+      {
         path: "dashboard",
         component: () => import("@/page/dashboard/index.vue"),
-      },
-      {
-        path: "attendance/student",
-        component: () => import("@/page/attendance/student/list.vue"),
-      },
-      {
-        path: "attendance/teacher",
-        component: () => import("@/page/attendance/teacher/list.vue"),
-      },
-      {
-        path: "teacher/teacher",
-        component: () => import("@/page/teacher/teacher/list.vue"),
-      },
-      {
-        path: "teacher/research",
-        component: () => import("@/page/teacher/research/list.vue"),
-      },
-      {
-        path: "teacher/task",
-        component: () => import("@/page/teacher/task/list.vue"),
-      },
-      {
-        path: "course/course",
-        component: () => import("@/page/course/course/list.vue"),
-      },
-      {
-        path: "course/schedule",
-        component: () => import("@/page/course/schedule/list.vue"),
-      },
-      {
-        path: "course/substitutes",
-        component: () => import("@/page/course/substitute/list.vue"),
-      },
-      {
-        path: "course/section",
-        component: () => import("@/page/course/section/list.vue"),
-      },
-      {
-        path: "title/add",
-        component: () => import("@/page/title/add/list.vue"),
-      },
-      {
-        path: "title/title",
-        component: () => import("@/page/title/list/list.vue"),
       },
     ],
   },

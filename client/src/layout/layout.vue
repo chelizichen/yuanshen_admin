@@ -2,8 +2,8 @@
   <div class="common-layout">
     <el-container>
       <el-container>
-        <el-aside width="200px">
-          <AdminLeft></AdminLeft>
+        <el-aside width="200px" style="height: 100vh;">
+          <AdminLeft style="height: 100vh;"></AdminLeft>
         </el-aside>
         <el-main>
           <slot></slot>

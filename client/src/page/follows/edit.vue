@@ -45,24 +45,14 @@
 
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref, watch } from "vue";
-import { User } from "../../../types/dto";
-import { UserAPI } from "../../../api";
+import { Follows } from "../../types/dto";
+import { FollowsAPI } from "../../api";
 import { useRoute } from "vue-router";
 import moment from 'moment';
-import { fa } from "element-plus/es/locale";
 import { ElNotification } from "element-plus";
 
 const state = reactive({
-  val: <User>{
-    userId: "",
-    username: "",
-    password: "",
-    signature: "",
-    level: "",
-    loginTime: "",
-    createTime: "",
-    truthName: "",
-    avatar: "",
+  val: <Follows>{
   },
   progress:{
     show:false,
@@ -72,15 +62,11 @@ const state = reactive({
 
 const route = useRoute()
 
-const isAdd = computed(()=>{
-  return route.query.id?false:true;
-  
-})
 
 onMounted(async () => {
   const {id} = route.query
   if(id){
-    const data = await UserAPI.one({id:String(id)})
+    const data = await FollowsAPI.one({id:String(id)})
   // @ts-ignore
     state.val = data
   }
@@ -91,16 +77,7 @@ const formLabelWidth = "140px";
 async function submit() {
   state.progress.show = true;
   state.progress.percentage = 50
-  console.log(isAdd.value);
-  
-  if(isAdd.value){
-    state.val.createTime = moment(Date.now()).format("YYYY-MM-DD hh:mm:ss")
-    state.val.loginTime = moment(Date.now()).format("YYYY-MM-DD hh:mm:ss")
-    state.val.level = "0"
-  }
-  // @ts-ignore
-  state.val.userId = route.query.id || undefined
-  await UserAPI.update(state.val);
+  await FollowsAPI.update(state.val);
   state.progress.percentage = 100
   ElNotification.success({
     'message':"更新用户信息成功"

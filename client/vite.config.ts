@@ -13,7 +13,7 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/server/, ""),
       },
     },
-    port: 3000,
+    port: 3888,
   },
   resolve: {
     alias: {
