@@ -14,14 +14,18 @@
           <el-table-column prop="content" label="评论内容" align="center" />
           <el-table-column prop="disLikes" label="不喜欢" align="center" />
           <el-table-column prop="likes" label="喜欢" align="center" />
-          <el-table-column prop="postId" label="帖子Id" align="center" />
+          <el-table-column prop="postId" label="帖子Id" align="center" >
+            <template #default="scope">
+              <el-button type="primary" @click="toPostDetail(scope.row.postId)">{{  scope.row.postId}} </el-button>
+            </template>
+            </el-table-column>
           <el-table-column prop="releaseTime" label="发布时间" align="center" />
 
 
           <el-table-column label="操作">
             <template #default="scope">
               <el-button type="primary" size="small" @click="handle_edit(scope.row)"
-                >编辑</el-button
+                >审核</el-button
               >
               <el-popconfirm title="确认要删除吗?" @confirm="handle_del(scope.row)">
                 <template #reference>
@@ -52,6 +56,10 @@
   
   const router = useRouter();
   
+  function toPostDetail(item: any) {
+    router.push("/admin/posts/edit?id=" + item);
+}
+
   const state = reactive({
     list: <Array<Follows>>[],
     total: "",
@@ -63,12 +71,11 @@
   });
   
   function handle_edit(item: any) {
-    router.push("/admin/posts/list?id=" + item.userId);
   }
   
   
   async function handle_del(item: Follows) {
-    const data = await FollowsAPI.del({ id: item.userId });
+    const data = await FollowsAPI.del({ id: item.id });
     init();
   }
   

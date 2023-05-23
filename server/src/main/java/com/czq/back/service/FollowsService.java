@@ -43,7 +43,7 @@ public class FollowsService {
     }
 
     public void deleteById(Long id) {
-        Optional<Follows> userOptional = followsRepository.findById(id);
+        Optional<Follows> userOptional = followsRepository.findById((long)id);
         if (userOptional.isPresent()) {
             followsRepository.delete(userOptional.get());
         } else {

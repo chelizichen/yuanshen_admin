@@ -54,6 +54,7 @@
 <script>
 import { UserAPI } from "../../api/index";
 import { ElNotification } from "element-plus";
+import {useRouter} from 'vue-router'
 export default {
   name: "LoginBox",
   data() {
@@ -81,6 +82,8 @@ export default {
         ElNotification.success({
           title: "登陆成功",
         });
+
+      this.$router.push("/admin/system/user")
       }else{
         ElNotification.error({
           title: "登陆失败",

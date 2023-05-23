@@ -6,7 +6,7 @@
   active-text-color="gold"
   >
     <el-menu-item index="-1">
-      <div>米哈游后台管理系统</div>
+      <div>米哈游社区后台管理系统</div>
     </el-menu-item>
     <el-sub-menu index="1">
       <template #title>

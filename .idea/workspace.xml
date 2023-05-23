@@ -3,8 +3,25 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fceb9910-c37e-42b1-b672-7e1a46e14f68" name="默认的" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/layout/left.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/layout/left.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/page/posts/edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/posts/edit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/page/posts/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/page/posts/list.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/czq/back/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/czq/back/entity/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/czq/back/service/FollowsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/czq/back/service/FollowsService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
   <component name="CompilerWorkspaceConfiguration">
     <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -22,7 +39,16 @@
       </MavenImportingSettings>
     </option>
   </component>
+  <component name="ProjectId" id="2QC1tKdtvlXn0HnQIurugJuyY3U" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="configurable.GoLibrariesConfigurable.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="project.structure.last.edited" value="项目" />
@@ -111,6 +137,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fceb9910-c37e-42b1-b672-7e1a46e14f68" name="默认的" comment="" />
+      <created>1684842962175</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1684842962175</updated>
+      <workItem from="1684842963508" duration="21000" />
+    </task>
+    <servers />
   </component>
   <component name="VgoProject">
     <environment>

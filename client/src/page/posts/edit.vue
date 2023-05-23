@@ -1,7 +1,7 @@
 <template>
 
   <el-card>
-    <div>更新用户信息</div>
+    <div>更新帖子信息</div>
     <el-progress
     :stroke-width="10"
     :percentage="state.progress.percentage"
@@ -9,19 +9,18 @@
     v-show="state.progress.show"
   />
     <el-form :model="state.val">
-      <el-form-item label="用户名" :label-width="formLabelWidth">
-        <el-input v-model="state.val.username" autocomplete="off" />
+      <el-form-item label="标题" :label-width="formLabelWidth">
+        <el-input v-model="state.val.title" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="真实名" :label-width="formLabelWidth">
-        <el-input v-model="state.val.truthName" autocomplete="off" />
+      <el-form-item label="内容" :label-width="formLabelWidth">
+        <el-input v-model="state.val.content" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="密码" :label-width="formLabelWidth">
-        <el-input v-model="state.val.password" autocomplete="off" />
+      <el-form-item label="图片" :label-width="formLabelWidth">
+        <img :src='"http://localhost:3000/posts/"+state.val.img' autocomplete="off"  style="width: 500px;height:500px"/>
       </el-form-item>
-      <el-form-item label="个性签名" :label-width="formLabelWidth">
-        <el-input v-model="state.val.signature" autocomplete="off" />
-      </el-form-item>
-      <el-form-item label="等级" :label-width="formLabelWidth">
+
+
+      <!-- <el-form-item label="等级" :label-width="formLabelWidth">
         <el-input :disabled="true" v-model="state.val.level" autocomplete="off" />
       </el-form-item>
       <el-form-item label="登录时间" :label-width="formLabelWidth">
@@ -32,7 +31,7 @@
       </el-form-item>    
       <el-form-item label="头像" :label-width="formLabelWidth">
         <el-input :disabled="true" v-model="state.val.avatar" autocomplete="off" />
-      </el-form-item>
+      </el-form-item> -->
   
       <div class="footer">
         <el-button @click="close">取消</el-button>
@@ -87,7 +86,7 @@ async function submit() {
   await PostsAPI.update(state.val);
   state.progress.percentage = 100
   ElNotification.success({
-    'message':"更新用户信息成功"
+    'message':"更新帖子信息成功"
   })
 }
 
