@@ -17,7 +17,7 @@
         <el-table-column prop="level" label="等级" align="center" />
         <el-table-column prop="loginTime" label="登录时间" align="center" />
         <el-table-column prop="createTime" label="创建时间" align="center" />
-        <el-table-column prop="avatar" label="头像" align="center" />
+        <!-- <el-table-column prop="avatar" label="头像" align="center" /> -->
         <el-table-column label="操作">
           <template #default="scope">
             <el-button type="primary" size="small" @click="handle_edit(scope.row)"
